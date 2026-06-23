@@ -1,0 +1,478 @@
+{
+    "$schema": "gigischema.json",
+    "version": "1.01",
+    "variables": [
+        {
+            "name": "iTime",
+            "type": "Float",
+            "dflt": "0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "MouseState",
+            "type": "Float4",
+            "dflt": "0.0f, 0.0f, 0.0f, 0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "MouseStateLastFrame",
+            "type": "Float4",
+            "dflt": "0.0f, 0.0f, 0.0f, 0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "iResolution",
+            "type": "Float3",
+            "dflt": "3840.0f, 2160.0f, 0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "iTimeDelta",
+            "type": "Float",
+            "dflt": "0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "iFrameRate",
+            "type": "Float",
+            "dflt": "0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "iFrame",
+            "type": "Int",
+            "dflt": "0",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "iMouse",
+            "type": "Float4",
+            "dflt": "0.0f, 0.0f, 0.0f, 0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "ViewMtx",
+            "type": "Float4x4",
+            "dflt": "1.0f, 0.0f, 0.0f, 0.0f,   0.0f, 1.0f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f, 0.0f,   0.0f, 0.0f, 0.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "InvViewMtx",
+            "type": "Float4x4",
+            "dflt": "1.0f, 0.0f, 0.0f, 0.0f,   0.0f, 1.0f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f, 0.0f,   0.0f, 0.0f, 0.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "ProjMtx",
+            "type": "Float4x4",
+            "dflt": "1.0f, 0.0f, 0.0f, 0.0f,   0.0f, 1.0f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f, 0.0f,   0.0f, 0.0f, 0.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "InvProjMtx",
+            "type": "Float4x4",
+            "dflt": "1.0f, 0.0f, 0.0f, 0.0f,   0.0f, 1.0f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f, 0.0f,   0.0f, 0.0f, 0.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "JitteredProjMtx",
+            "type": "Float4x4",
+            "dflt": "1.0f, 0.0f, 0.0f, 0.0f,   0.0f, 1.0f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f, 0.0f,   0.0f, 0.0f, 0.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "InvJitteredProjMtx",
+            "type": "Float4x4",
+            "dflt": "1.0f, 0.0f, 0.0f, 0.0f,   0.0f, 1.0f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f, 0.0f,   0.0f, 0.0f, 0.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "ViewProjMtx",
+            "type": "Float4x4",
+            "dflt": "1.0f, 0.0f, 0.0f, 0.0f,   0.0f, 1.0f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f, 0.0f,   0.0f, 0.0f, 0.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "InvViewProjMtx",
+            "type": "Float4x4",
+            "dflt": "1.0f, 0.0f, 0.0f, 0.0f,   0.0f, 1.0f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f, 0.0f,   0.0f, 0.0f, 0.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "JitteredViewProjMtx",
+            "type": "Float4x4",
+            "dflt": "1.0f, 0.0f, 0.0f, 0.0f,   0.0f, 1.0f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f, 0.0f,   0.0f, 0.0f, 0.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "InvJitteredViewProjMtx",
+            "type": "Float4x4",
+            "dflt": "1.0f, 0.0f, 0.0f, 0.0f,   0.0f, 1.0f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f, 0.0f,   0.0f, 0.0f, 0.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "CameraPos",
+            "type": "Float3",
+            "dflt": "0.0f, 0.0f, 0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "CameraUp",
+            "type": "Float3",
+            "dflt": "0.0f, 1.0f, 0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "CameraLeft",
+            "type": "Float3",
+            "dflt": "-1.0f, 0.0f, 0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "CameraForward",
+            "type": "Float3",
+            "dflt": "0.0f, 0.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "CameraFOV",
+            "type": "Float",
+            "dflt": "0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "CameraAltitudeAzimuth",
+            "type": "Float2",
+            "dflt": "0.0f, 0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "CameraChanged",
+            "type": "Bool",
+            "dflt": "false",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "CameraJitter",
+            "type": "Float2",
+            "dflt": "0.5f, 0.5f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "CameraJitterRaw",
+            "type": "Float2",
+            "dflt": "0.5f, 0.5f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "CameraNearPlane",
+            "type": "Float",
+            "dflt": "0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "CameraFarPlane",
+            "type": "Float",
+            "dflt": "0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "ShadingRateImageTileSize",
+            "type": "Uint",
+            "dflt": "16",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "WindowSize",
+            "type": "Float2",
+            "dflt": "1.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "Color",
+            "type": "Float4",
+            "visibility": "User"
+        },
+        {
+            "name": "Tint",
+            "type": "Float4",
+            "visibility": "User"
+        },
+        {
+            "name": "CutLumCol",
+            "type": "Float4",
+            "visibility": "User"
+        },
+        {
+            "name": "NoiseScale1",
+            "type": "Float2",
+            "visibility": "User"
+        },
+        {
+            "name": "NoiseMoveVec",
+            "type": "Float2",
+            "visibility": "User"
+        },
+        {
+            "name": "OutputSize",
+            "type": "Float2",
+            "visibility": "User"
+        },
+        {
+            "name": "Pow",
+            "type": "Float",
+            "visibility": "User"
+        },
+        {
+            "name": "RefractionStrength",
+            "type": "Float",
+            "visibility": "User"
+        },
+        {
+            "name": "ColorSplit",
+            "type": "Float",
+            "visibility": "User"
+        },
+        {
+            "name": "NoiseAdd",
+            "type": "Float",
+            "visibility": "User"
+        },
+        {
+            "name": "NoiseScale",
+            "type": "Float",
+            "visibility": "User"
+        },
+        {
+            "name": "BackColorMult",
+            "type": "Float",
+            "visibility": "User"
+        },
+        {
+            "name": "BackColorPow",
+            "type": "Float",
+            "visibility": "User"
+        },
+        {
+            "name": "Invert",
+            "type": "Float",
+            "visibility": "User"
+        },
+        {
+            "name": "MaxLumCutoff",
+            "type": "Float",
+            "visibility": "User"
+        },
+        {
+            "name": "CutLum",
+            "type": "Float",
+            "visibility": "User"
+        },
+        {
+            "name": "MainTexAsColorSplit",
+            "type": "Float",
+            "visibility": "User"
+        },
+        {
+            "name": "ColorSplitPow",
+            "type": "Float",
+            "visibility": "User"
+        },
+        {
+            "name": "BlurFactor",
+            "type": "Float",
+            "visibility": "User"
+        },
+        {
+            "name": "FlipDirectionVec",
+            "type": "Float",
+            "visibility": "User"
+        },
+        {
+            "name": "GradientA",
+            "type": "Float4",
+            "visibility": "User"
+        },
+        {
+            "name": "GradientB",
+            "type": "Float4",
+            "visibility": "User"
+        }
+    ],
+    "shaders": [
+        {
+            "name": "Playground",
+            "fileName": "Playground.hlsl",
+            "resources": [
+                {
+                    "name": "Tex",
+                    "access": "SRV",
+                    "type": "Texture"
+                },
+                {
+                    "name": "Output",
+                    "access": "UAV",
+                    "type": "Texture"
+                },
+                {
+                    "name": "SceneColor",
+                    "access": "SRV",
+                    "type": "Texture"
+                },
+                {
+                    "name": "ColorSplit",
+                    "access": "SRV",
+                    "type": "Texture"
+                }
+            ],
+            "samplers": [
+                {
+                    "name": "LinearWrap"
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "resourceTexture": {
+                "name": "Tex",
+                "editorPos": [
+                    -261.0,
+                    -78.0
+                ],
+                "visibility": "Imported"
+            }
+        },
+        {
+            "actionComputeShader": {
+                "name": "Playground",
+                "editorPos": [
+                    -139.0,
+                    -65.0
+                ],
+                "linkProperties": [
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "connections": [
+                    {
+                        "srcPin": "Tex",
+                        "dstNode": "Tex",
+                        "dstPin": "resource"
+                    },
+                    {
+                        "srcPin": "Output",
+                        "dstNode": "Output",
+                        "dstPin": "resource"
+                    },
+                    {
+                        "srcPin": "SceneColor",
+                        "dstNode": "SceneColor",
+                        "dstPin": "resource"
+                    },
+                    {
+                        "srcPin": "ColorSplit",
+                        "dstNode": "ColorSplit",
+                        "dstPin": "resource"
+                    }
+                ],
+                "shader": {
+                    "name": "Playground"
+                },
+                "shaderVariableAliases": {
+                    "aliases": [
+                        {}
+                    ]
+                },
+                "dispatchSize": {
+                    "node": {
+                        "name": "Tex"
+                    }
+                }
+            }
+        },
+        {
+            "resourceTexture": {
+                "name": "Output",
+                "editorPos": [
+                    -261.0,
+                    -30.0
+                ],
+                "visibility": "Exported",
+                "format": {
+                    "node": {
+                        "name": "Tex"
+                    }
+                },
+                "size": {
+                    "node": {
+                        "name": "Tex"
+                    }
+                }
+            }
+        },
+        {
+            "resourceTexture": {
+                "name": "SceneColor",
+                "editorPos": [
+                    -261.0,
+                    18.0
+                ],
+                "visibility": "Imported",
+                "size": {
+                    "node": {
+                        "name": "Tex"
+                    }
+                }
+            }
+        },
+        {
+            "resourceTexture": {
+                "name": "ColorSplit",
+                "editorPos": [
+                    -261.0,
+                    66.0
+                ],
+                "visibility": "Imported",
+                "size": {
+                    "node": {
+                        "name": "Tex"
+                    }
+                }
+            }
+        }
+    ]
+}

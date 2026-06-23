@@ -1,0 +1,106 @@
+{
+    "version": "2.0",
+    "snapshot": {
+        "resourceViewNodeIndex": 1,
+        "resourceViewResourceIndex": 5,
+        "importedResources": [
+            {
+                "nodeName": "ColorSplit",
+                "texture": {
+                    "fileName": "..\\..\\..\\Desktop\\DepSplashCS.png",
+                    "format": "RGBA32_Float",
+                    "binaryFormat": "Any"
+                }
+            },
+            {
+                "nodeName": "SceneColor",
+                "texture": {
+                    "fileName": "..\\..\\..\\Desktop\\depwlw.png",
+                    "format": "RGBA32_Float",
+                    "binaryFormat": "Any"
+                }
+            },
+            {
+                "nodeName": "Tex",
+                "texture": {
+                    "fileName": "..\\..\\..\\Desktop\\DepSplashBG.png",
+                    "binaryFormat": "Any"
+                }
+            }
+        ],
+        "savedVariables": [
+            {
+                "name": "Color",
+                "value": "0.475000,0.024000,0.165000,1.000000"
+            },
+            {
+                "name": "Tint",
+                "value": "0.000000,0.000000,0.000000,0.000000"
+            },
+            {
+                "name": "NoiseScale1",
+                "value": "1.000000,1.000000"
+            },
+            {
+                "name": "NoiseMoveVec",
+                "value": "0.050000,0.000000"
+            },
+            {
+                "name": "Pow",
+                "value": "0.420000"
+            },
+            {
+                "name": "RefractionStrength",
+                "value": "0.030000"
+            },
+            {
+                "name": "ColorSplit",
+                "value": "0.010000"
+            },
+            {
+                "name": "NoiseAdd",
+                "value": "0.020000"
+            },
+            {
+                "name": "NoiseScale",
+                "value": "6.050000"
+            },
+            {
+                "name": "BackColorMult",
+                "value": "10.000000"
+            },
+            {
+                "name": "BackColorPow",
+                "value": "1.000000"
+            },
+            {
+                "name": "Invert",
+                "value": "0.000000"
+            },
+            {
+                "name": "MainTexAsColorSplit",
+                "value": "1.000000"
+            },
+            {
+                "name": "ColorSplitPow",
+                "value": "0.200000"
+            },
+            {
+                "name": "BlurFactor",
+                "value": "0.011000"
+            },
+            {
+                "name": "FlipDirectionVec",
+                "value": "0.000000"
+            },
+            {
+                "name": "GradientA",
+                "value": "0.000000,0.000000,0.000000,0.000000"
+            },
+            {
+                "name": "GradientB",
+                "value": "1.000000,0.000000,0.000000,0.000000"
+            }
+        ]
+    }
+}

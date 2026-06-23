@@ -1,0 +1,66 @@
+{
+    "version": "2.0",
+    "snapshot": {
+        "resourceViewNodeIndex": 1,
+        "resourceViewResourceIndex": 2,
+        "importedResources": [
+            {
+                "nodeName": "Input",
+                "texture": {
+                    "fileName": "..\\..\\..\\Downloads\\depctr.png",
+                    "binaryFormat": "Any"
+                }
+            }
+        ],
+        "savedVariables": [
+            {
+                "name": "MoveSpeed",
+                "value": "0.150000"
+            },
+            {
+                "name": "MoveDir1",
+                "value": "1.000000,1.000000"
+            },
+            {
+                "name": "MoveDir2",
+                "value": "1.000000,-1.000000"
+            },
+            {
+                "name": "Scale",
+                "value": "2.500000,2.000000"
+            },
+            {
+                "name": "Scalar",
+                "value": "2.000000"
+            },
+            {
+                "name": "Steps",
+                "value": "100.000000"
+            },
+            {
+                "name": "Width",
+                "value": "0.200000"
+            },
+            {
+                "name": "Pow",
+                "value": "1.250000"
+            },
+            {
+                "name": "Seperation",
+                "value": "1.000000"
+            },
+            {
+                "name": "Color",
+                "value": "0.474500,0.023529,0.164706,1.000000"
+            },
+            {
+                "name": "NoiseDivisor",
+                "value": "0.560000"
+            },
+            {
+                "name": "NoiseOctaveStrength",
+                "value": "6.100000"
+            }
+        ]
+    }
+}

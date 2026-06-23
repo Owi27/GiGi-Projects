@@ -1,0 +1,162 @@
+{
+    "$schema": "gigischema.json",
+    "version": "1.01",
+    "variables": [
+        {
+            "name": "MoveSpeed",
+            "type": "Float",
+            "visibility": "User"
+        },
+        {
+            "name": "MoveDir1",
+            "type": "Float2",
+            "visibility": "User"
+        },
+        {
+            "name": "MoveDir2",
+            "type": "Float2",
+            "visibility": "User"
+        },
+        {
+            "name": "Scale",
+            "type": "Float2",
+            "visibility": "User"
+        },
+        {
+            "name": "Scalar",
+            "type": "Float",
+            "visibility": "User"
+        },
+        {
+            "name": "Steps",
+            "type": "Float",
+            "visibility": "User"
+        },
+        {
+            "name": "Width",
+            "type": "Float",
+            "visibility": "User"
+        },
+        {
+            "name": "Pow",
+            "type": "Float",
+            "visibility": "User"
+        },
+        {
+            "name": "Seperation",
+            "type": "Float",
+            "visibility": "User"
+        },
+        {
+            "name": "Color",
+            "type": "Float4",
+            "visibility": "User"
+        },
+        {
+            "name": "NoiseDivisor",
+            "type": "Float",
+            "visibility": "User"
+        },
+        {
+            "name": "NoiseOctaveStrength",
+            "type": "Float",
+            "visibility": "User"
+        },
+        {
+            "name": "iTime",
+            "type": "Float"
+        },
+        {
+            "name": "iFrame",
+            "type": "Int"
+        }
+    ],
+    "shaders": [
+        {
+            "name": "PHG",
+            "fileName": "PHG.hlsl",
+            "resources": [
+                {
+                    "name": "Input",
+                    "access": "SRV",
+                    "type": "Texture"
+                },
+                {
+                    "name": "Output",
+                    "access": "UAV",
+                    "type": "Texture"
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "resourceTexture": {
+                "name": "Input",
+                "editorPos": [
+                    -261.0,
+                    -78.0
+                ],
+                "visibility": "Imported"
+            }
+        },
+        {
+            "actionComputeShader": {
+                "name": "PHG",
+                "editorPos": [
+                    -139.0,
+                    -65.0
+                ],
+                "linkProperties": [
+                    {},
+                    {}
+                ],
+                "connections": [
+                    {
+                        "srcPin": "Input",
+                        "dstNode": "Input",
+                        "dstPin": "resource"
+                    },
+                    {
+                        "srcPin": "Output",
+                        "dstNode": "Output",
+                        "dstPin": "resource"
+                    }
+                ],
+                "shader": {
+                    "name": "PHG"
+                },
+                "shaderVariableAliases": {
+                    "aliases": [
+                        {}
+                    ]
+                },
+                "dispatchSize": {
+                    "node": {
+                        "name": "Input"
+                    }
+                }
+            }
+        },
+        {
+            "resourceTexture": {
+                "name": "Output",
+                "editorPos": [
+                    -261.0,
+                    -30.0
+                ],
+                "visibility": "Exported",
+                "format": {
+                    "node": {
+                        "name": "Input"
+                    }
+                },
+                "size": {
+                    "node": {
+                        "name": "Input"
+                    }
+                }
+            }
+        }
+    ]
+}
