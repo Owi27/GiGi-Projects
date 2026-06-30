@@ -1,0 +1,33 @@
+{
+    "$schema": "gigischema.json",
+    "name": "ShadowSubGraph",
+    "version": "1.01",
+    "nodes": [
+        {
+            "actionDrawCall": {
+                "name": "Node",
+                "editorPos": [
+                    83.0,
+                    -71.0
+                ],
+                "linkProperties": [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ]
+            }
+        },
+        {
+            "resourceBuffer": {
+                "name": "PointLight",
+                "editorPos": [
+                    -149.0,
+                    -30.0
+                ]
+            }
+        }
+    ]
+}

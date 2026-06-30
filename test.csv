@@ -1,0 +1,4 @@
+PosDir0,PosDir1,PosDir2,PosDir3,ColorIntensity0,ColorIntensity1,ColorIntensity2,ColorIntensity3,Range,SpotInnerOuterRad0,SpotInnerOuterRad1
+0,0,0,0,1,1,1,1,5,0,0
+7,0,0,0,1,0,0,1,10,0,0
+0,7,0,0,0,1,0,0,7,0,0

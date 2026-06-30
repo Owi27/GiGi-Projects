@@ -1,0 +1,66 @@
+{
+    "version": "2.0",
+    "systemVars": {
+        "iResolution_textureName": "Lighting"
+    },
+    "snapshot": {
+        "resourceViewNodeIndex": 17,
+        "resourceViewResourceIndex": 7,
+        "cameraPos": [
+            -2.5530624389648439,
+            4.148972988128662,
+            -0.048646628856658939
+        ],
+        "cameraAltitudeAzimuth": [
+            -0.6949998140335083,
+            5.273182392120361
+        ],
+        "importedResources": [
+            {
+                "nodeName": "Lights",
+                "isATexture": false,
+                "buffer": {
+                    "fileName": "test.csv",
+                    "dataStream": "Lights",
+                    "structIndex": 2,
+                    "BLASOpaque": true
+                }
+            },
+            {
+                "nodeName": "Material",
+                "isATexture": false,
+                "buffer": {
+                    "fileName": "..\\..\\glTF-Sample-Models-main\\glTF-Sample-Models-main\\2.0\\Sponza\\glTF\\Sponza.gltf",
+                    "dataStream": "Materials",
+                    "materialShaderFile": "D:\\dev\\GiGi-Projects\\Renderer\\Material.hlsl",
+                    "structIndex": 1,
+                    "BLASOpaque": true
+                }
+            },
+            {
+                "nodeName": "PointLights",
+                "isATexture": false,
+                "buffer": {
+                    "fileName": "PointLights.csv",
+                    "dataStream": "Lights",
+                    "structIndex": 3,
+                    "BLASOpaque": true
+                }
+            },
+            {
+                "nodeName": "Scene",
+                "isATexture": false,
+                "buffer": {
+                    "fileName": "..\\..\\glTF-Sample-Models-main\\glTF-Sample-Models-main\\2.0\\Sponza\\glTF\\Sponza.gltf",
+                    "structIndex": 0
+                }
+            }
+        ],
+        "savedVariables": [
+            {
+                "name": "LightCol",
+                "value": "7.000000,0.000000,1.000000"
+            }
+        ]
+    }
+}
