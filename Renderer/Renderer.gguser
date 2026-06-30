@@ -4,16 +4,16 @@
         "iResolution_textureName": "Lighting"
     },
     "snapshot": {
-        "resourceViewNodeIndex": 2,
-        "resourceViewResourceIndex": 81,
+        "resourceViewNodeIndex": 17,
+        "resourceViewResourceIndex": 7,
         "cameraPos": [
-            4.199583053588867,
-            6.32297420501709,
-            0.5272218585014343
+            -2.5530624389648439,
+            4.148972988128662,
+            -0.048646628856658939
         ],
         "cameraAltitudeAzimuth": [
-            -0.6399991512298584,
-            1.7318204641342164
+            -0.6949998140335083,
+            5.273182392120361
         ],
         "importedResources": [
             {
@@ -30,9 +30,9 @@
                 "nodeName": "Material",
                 "isATexture": false,
                 "buffer": {
-                    "fileName": "..\\..\\glTF-Sample-Models\\2.0\\Sponza\\glTF\\Sponza.gltf",
+                    "fileName": "..\\..\\glTF-Sample-Models-main\\glTF-Sample-Models-main\\2.0\\Sponza\\glTF\\Sponza.gltf",
                     "dataStream": "Materials",
-                    "materialShaderFile": "C:\\Users\\Owi\\Documents\\gigi\\Renderer\\Material.hlsl",
+                    "materialShaderFile": "D:\\dev\\GiGi-Projects\\Renderer\\Material.hlsl",
                     "structIndex": 1,
                     "BLASOpaque": true
                 }
@@ -51,7 +51,7 @@
                 "nodeName": "Scene",
                 "isATexture": false,
                 "buffer": {
-                    "fileName": "..\\..\\glTF-Sample-Models\\2.0\\Sponza\\glTF\\Sponza.gltf",
+                    "fileName": "..\\..\\glTF-Sample-Models-main\\glTF-Sample-Models-main\\2.0\\Sponza\\glTF\\Sponza.gltf",
                     "structIndex": 0
                 }
             }

@@ -420,21 +420,25 @@
                             "name": "PointLight"
                         }
                     }
-                },
-                {
-                    "name": "ShadowCubeMap",
-                    "access": "UAV",
-                    "type": "Texture",
-                    "texture": {
-                        "dimension": "TextureCube"
-                    }
                 }
             ]
         },
         {
             "name": "ShadowVertex",
             "fileName": "ShadowVertex.hlsl",
-            "type": "Vertex"
+            "type": "Vertex",
+            "resources": [
+                {
+                    "name": "PLights",
+                    "access": "SRV",
+                    "type": "Buffer",
+                    "buffer": {
+                        "typeStruct": {
+                            "name": "PointLight"
+                        }
+                    }
+                }
+            ]
         }
     ],
     "structs": [
@@ -874,8 +878,8 @@
             "actionComputeShader": {
                 "name": "LightingPass",
                 "editorPos": [
-                    773.0,
-                    41.0
+                    1015.0,
+                    169.0
                 ],
                 "linkProperties": [
                     {},
@@ -891,8 +895,8 @@
                 "connections": [
                     {
                         "srcPin": "Lights",
-                        "dstNode": "ShadowPass",
-                        "dstPin": "PointLights"
+                        "dstNode": "Lights",
+                        "dstPin": "resource"
                     },
                     {
                         "srcPin": "PLights",
@@ -967,16 +971,16 @@
             "resourceTexture": {
                 "name": "Point Light Shadow Map",
                 "editorPos": [
-                    266.0,
-                    274.0
+                    -297.0,
+                    600.0
                 ],
                 "format": {
-                    "format": "RGBA8_Unorm"
+                    "format": "D32_Float"
                 },
                 "size": {
                     "multiply": [
-                        2048,
-                        2048,
+                        1920,
+                        1080,
                         1
                     ]
                 },
@@ -985,10 +989,10 @@
         },
         {
             "actionDrawCall": {
-                "name": "ShadowPass",
+                "name": "ShadowPassRIGHT",
                 "editorPos": [
-                    463.0,
-                    16.0
+                    -78.0,
+                    514.0
                 ],
                 "linkProperties": [
                     {},
@@ -1003,13 +1007,13 @@
                 ],
                 "connections": [
                     {
-                        "srcPin": "PointLights",
+                        "srcPin": "PLights",
                         "dstNode": "PointLights",
                         "dstPin": "resource"
                     },
                     {
-                        "srcPin": "ShadowCubeMap",
-                        "dstNode": "Point Light Shadow Map",
+                        "srcPin": "PointLights",
+                        "dstNode": "PointLights",
                         "dstPin": "resource"
                     }
                 ],
@@ -1019,10 +1023,22 @@
                 "pixelShader": {
                     "name": "ShadowFragment"
                 },
-                "depthTest": "Greater",
+                "depthTargetClear": true,
+                "depthTargetClearValue": 1.0,
+                "depthTest": "LessEqual",
+                "defines": [
+                    {
+                        "name": "FACE",
+                        "value": "0"
+                    }
+                ],
+                "vertexBuffer": {
+                    "node": "Node",
+                    "pin": "source"
+                },
                 "colorTargets": [
                     {
-                        "node": "Point Light Shadow Map",
+                        "node": "Albedo (1)",
                         "pin": "resource"
                     },
                     {},
@@ -1032,7 +1048,413 @@
                     {},
                     {},
                     {}
-                ]
+                ],
+                "depthTarget": {
+                    "node": "Point Light Shadow Map",
+                    "pin": "resource"
+                }
+            }
+        },
+        {
+            "actionDrawCall": {
+                "name": "ShadowPassLEFT",
+                "editorPos": [
+                    98.0,
+                    515.0
+                ],
+                "linkProperties": [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "connections": [
+                    {
+                        "srcPin": "PLights",
+                        "dstNode": "ShadowPassRIGHT",
+                        "dstPin": "PLights"
+                    },
+                    {
+                        "srcPin": "PointLights",
+                        "dstNode": "ShadowPassRIGHT",
+                        "dstPin": "PointLights"
+                    }
+                ],
+                "vertexShader": {
+                    "name": "ShadowVertex"
+                },
+                "pixelShader": {
+                    "name": "ShadowFragment"
+                },
+                "depthTargetClear": true,
+                "depthTargetClearValue": 1.0,
+                "depthArrayIndex": 1,
+                "depthTest": "LessEqual",
+                "defines": [
+                    {
+                        "name": "FACE",
+                        "value": "1"
+                    }
+                ],
+                "vertexBuffer": {
+                    "node": "ShadowPassRIGHT",
+                    "pin": "vertexBuffer"
+                },
+                "colorTargets": [
+                    {
+                        "node": "ShadowPassRIGHT",
+                        "pin": "colorTarget0"
+                    },
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "depthTarget": {
+                    "node": "ShadowPassRIGHT",
+                    "pin": "depthTarget"
+                }
+            }
+        },
+        {
+            "actionDrawCall": {
+                "name": "ShadowPassTOP",
+                "editorPos": [
+                    274.0,
+                    515.0
+                ],
+                "linkProperties": [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "connections": [
+                    {
+                        "srcPin": "PLights",
+                        "dstNode": "ShadowPassLEFT",
+                        "dstPin": "PLights"
+                    },
+                    {
+                        "srcPin": "PointLights",
+                        "dstNode": "ShadowPassLEFT",
+                        "dstPin": "PointLights"
+                    }
+                ],
+                "vertexShader": {
+                    "name": "ShadowVertex"
+                },
+                "pixelShader": {
+                    "name": "ShadowFragment"
+                },
+                "depthTargetClear": true,
+                "depthTargetClearValue": 1.0,
+                "depthArrayIndex": 2,
+                "depthTest": "LessEqual",
+                "defines": [
+                    {
+                        "name": "FACE",
+                        "value": "2"
+                    }
+                ],
+                "vertexBuffer": {
+                    "node": "ShadowPassLEFT",
+                    "pin": "vertexBuffer"
+                },
+                "colorTargets": [
+                    {
+                        "node": "ShadowPassLEFT",
+                        "pin": "colorTarget0"
+                    },
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "depthTarget": {
+                    "node": "ShadowPassLEFT",
+                    "pin": "depthTarget"
+                }
+            }
+        },
+        {
+            "actionDrawCall": {
+                "name": "ShadowPassBOTTOM",
+                "editorPos": [
+                    450.0,
+                    515.0
+                ],
+                "linkProperties": [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "connections": [
+                    {
+                        "srcPin": "PLights",
+                        "dstNode": "ShadowPassTOP",
+                        "dstPin": "PLights"
+                    },
+                    {
+                        "srcPin": "PointLights",
+                        "dstNode": "ShadowPassTOP",
+                        "dstPin": "PointLights"
+                    }
+                ],
+                "vertexShader": {
+                    "name": "ShadowVertex"
+                },
+                "pixelShader": {
+                    "name": "ShadowFragment"
+                },
+                "depthTargetClear": true,
+                "depthTargetClearValue": 1.0,
+                "depthArrayIndex": 3,
+                "depthTest": "LessEqual",
+                "defines": [
+                    {
+                        "name": "FACE",
+                        "value": "3"
+                    }
+                ],
+                "vertexBuffer": {
+                    "node": "ShadowPassTOP",
+                    "pin": "vertexBuffer"
+                },
+                "colorTargets": [
+                    {
+                        "node": "ShadowPassTOP",
+                        "pin": "colorTarget0"
+                    },
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "depthTarget": {
+                    "node": "ShadowPassTOP",
+                    "pin": "depthTarget"
+                }
+            }
+        },
+        {
+            "actionDrawCall": {
+                "name": "ShadowPassFRONT",
+                "editorPos": [
+                    626.0,
+                    515.0
+                ],
+                "linkProperties": [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "connections": [
+                    {
+                        "srcPin": "PLights",
+                        "dstNode": "ShadowPassBOTTOM",
+                        "dstPin": "PLights"
+                    },
+                    {
+                        "srcPin": "PointLights",
+                        "dstNode": "ShadowPassBOTTOM",
+                        "dstPin": "PointLights"
+                    }
+                ],
+                "vertexShader": {
+                    "name": "ShadowVertex"
+                },
+                "pixelShader": {
+                    "name": "ShadowFragment"
+                },
+                "depthTargetClear": true,
+                "depthTargetClearValue": 1.0,
+                "depthArrayIndex": 4,
+                "depthTest": "LessEqual",
+                "stencilClear": true,
+                "colorTargetSettings": [
+                    {},
+                    {
+                        "arrayIndex": 4
+                    },
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "defines": [
+                    {
+                        "name": "FACE",
+                        "value": "4"
+                    }
+                ],
+                "vertexBuffer": {
+                    "node": "ShadowPassBOTTOM",
+                    "pin": "vertexBuffer"
+                },
+                "colorTargets": [
+                    {
+                        "node": "ShadowPassBOTTOM",
+                        "pin": "colorTarget0"
+                    },
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "depthTarget": {
+                    "node": "ShadowPassBOTTOM",
+                    "pin": "depthTarget"
+                }
+            }
+        },
+        {
+            "actionDrawCall": {
+                "name": "ShadowPassBACK",
+                "editorPos": [
+                    802.0,
+                    514.0
+                ],
+                "linkProperties": [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "connections": [
+                    {
+                        "srcPin": "PLights",
+                        "dstNode": "ShadowPassFRONT",
+                        "dstPin": "PLights"
+                    },
+                    {
+                        "srcPin": "PointLights",
+                        "dstNode": "ShadowPassFRONT",
+                        "dstPin": "PointLights"
+                    }
+                ],
+                "vertexShader": {
+                    "name": "ShadowVertex"
+                },
+                "pixelShader": {
+                    "name": "ShadowFragment"
+                },
+                "depthTargetClear": true,
+                "depthTargetClearValue": 1.0,
+                "depthArrayIndex": 5,
+                "depthTest": "LessEqual",
+                "colorTargetSettings": [
+                    {},
+                    {
+                        "arrayIndex": 4
+                    },
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "defines": [
+                    {
+                        "name": "FACE",
+                        "value": "5"
+                    }
+                ],
+                "vertexBuffer": {
+                    "node": "ShadowPassFRONT",
+                    "pin": "vertexBuffer"
+                },
+                "colorTargets": [
+                    {
+                        "node": "ShadowPassFRONT",
+                        "pin": "colorTarget0"
+                    },
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "depthTarget": {
+                    "node": "ShadowPassFRONT",
+                    "pin": "depthTarget"
+                }
+            }
+        },
+        {
+            "resourceTexture": {
+                "name": "Albedo (1)",
+                "editorPos": [
+                    -216.0,
+                    648.0
+                ],
+                "format": {
+                    "format": "RGBA8_Unorm"
+                },
+                "size": {
+                    "multiply": [
+                        1920,
+                        1080,
+                        1
+                    ]
+                }
+            }
+        },
+        {
+            "actionSubGraph": {
+                "name": "ShadowSubGraph",
+                "editorPos": [
+                    768.0,
+                    416.0
+                ],
+                "fileName": "ShadowSubGraph.gg",
+                "loopCountVariable": {
+                    "name": "Loop Count Variable_0"
+                }
             }
         }
     ],
@@ -1044,8 +1466,8 @@
                 -192.0
             ],
             "size": [
-                460.0,
-                329.0
+                492.0,
+                399.0
             ]
         }
     ]

@@ -3,8 +3,9 @@
 
 struct PSInput // AKA VSOutput
 {
-	float4 position   : SV_POSITION;
+    float4 position : SV_POSITION;
 	//TODO: fill this out
+    float3 wPos : TEXCOORD0;
 };
 
 struct PSOutput
@@ -17,7 +18,11 @@ PSOutput main(PSInput input)
 {
 	PSOutput ret = (PSOutput)0;
 	// TODO: fill this out
-	return ret;
+    float dist = length(input.wPos - PointLights[2].Pos);
+    float d = saturate(dist / PointLights[2].Range);
+
+    ret.colorTarget = float4(d, d, d, 1.0f);
+    return ret;
 }
 
 /*

@@ -33,7 +33,7 @@ float3 N = normalize(Normal[pixel].rgb * 2.f - 1.f); //-1-1
 float3 V = normalize( /*$(Variable:CameraPos)*/- position);
 
 //direct lighting    
-float3 lightPos = float3(lerp(-7.f, 7.f, abs(sin( /*$(Variable:iTime)*/ * .25f))), 0.f, 0.f);
+float3 lightPos = float3(lerp(-7.f, 7.f, abs(sin( /*$(Variable:iTime)*/ * .5f))), 0.f, 0.f);
 float3 Lo = float3(0.f, 0.f, 0.f);
 for (int i = 0;i < 5; i++)
     {        
