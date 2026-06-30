@@ -384,6 +384,57 @@
                     "type": "Texture"
                 }
             ]
+        },
+        {
+            "name": "PointLightShadow",
+            "fileName": "PointLightShadow.hlsl",
+            "resources": [
+                {
+                    "name": "PointLight",
+                    "access": "SRV",
+                    "type": "Buffer",
+                    "buffer": {
+                        "typeStruct": {
+                            "name": "PointLight"
+                        }
+                    }
+                },
+                {
+                    "name": "ShadowCubeMap",
+                    "access": "UAV",
+                    "type": "Texture"
+                }
+            ]
+        },
+        {
+            "name": "ShadowFragment",
+            "fileName": "ShadowFragment.hlsl",
+            "type": "Pixel",
+            "resources": [
+                {
+                    "name": "PointLights",
+                    "access": "SRV",
+                    "type": "Buffer",
+                    "buffer": {
+                        "typeStruct": {
+                            "name": "PointLight"
+                        }
+                    }
+                },
+                {
+                    "name": "ShadowCubeMap",
+                    "access": "UAV",
+                    "type": "Texture",
+                    "texture": {
+                        "dimension": "TextureCube"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "ShadowVertex",
+            "fileName": "ShadowVertex.hlsl",
+            "type": "Vertex"
         }
     ],
     "structs": [
@@ -823,8 +874,8 @@
             "actionComputeShader": {
                 "name": "LightingPass",
                 "editorPos": [
-                    469.0,
-                    -4.0
+                    773.0,
+                    41.0
                 ],
                 "linkProperties": [
                     {},
@@ -840,8 +891,8 @@
                 "connections": [
                     {
                         "srcPin": "Lights",
-                        "dstNode": "Lights",
-                        "dstPin": "resource"
+                        "dstNode": "ShadowPass",
+                        "dstPin": "PointLights"
                     },
                     {
                         "srcPin": "PLights",
@@ -911,6 +962,78 @@
                     "multiply": 3
                 }
             }
+        },
+        {
+            "resourceTexture": {
+                "name": "Point Light Shadow Map",
+                "editorPos": [
+                    266.0,
+                    274.0
+                ],
+                "format": {
+                    "format": "RGBA8_Unorm"
+                },
+                "size": {
+                    "multiply": [
+                        2048,
+                        2048,
+                        1
+                    ]
+                },
+                "dimension": "TextureCube"
+            }
+        },
+        {
+            "actionDrawCall": {
+                "name": "ShadowPass",
+                "editorPos": [
+                    463.0,
+                    16.0
+                ],
+                "linkProperties": [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "connections": [
+                    {
+                        "srcPin": "PointLights",
+                        "dstNode": "PointLights",
+                        "dstPin": "resource"
+                    },
+                    {
+                        "srcPin": "ShadowCubeMap",
+                        "dstNode": "Point Light Shadow Map",
+                        "dstPin": "resource"
+                    }
+                ],
+                "vertexShader": {
+                    "name": "ShadowVertex"
+                },
+                "pixelShader": {
+                    "name": "ShadowFragment"
+                },
+                "depthTest": "Greater",
+                "colorTargets": [
+                    {
+                        "node": "Point Light Shadow Map",
+                        "pin": "resource"
+                    },
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ]
+            }
         }
     ],
     "editorGroupNodes": [
@@ -921,8 +1044,8 @@
                 -192.0
             ],
             "size": [
-                444.0,
-                294.0
+                460.0,
+                329.0
             ]
         }
     ]

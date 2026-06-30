@@ -46,8 +46,11 @@ for (int i = 0;i < 5; i++)
             Lo += PointLight(position, N, V, lightPos, /*$(Variable:LightCol)*/, 0, Albedo[pixel].rgb, metallic, roughness);
         }
     }
+
+//Directional Light
+Lo += DirectionalLight(N, V, float3(-.2f, -1.f, -.3f), float3(0.f, 0.f, 1.f), Albedo[pixel].rgb, metallic, roughness);
     
-float3 ambient = float3(.0f, .0f, .0f) * Albedo[pixel].rgb * occlusion;
+float3 ambient = float3(.0f, .0f, .0f) * Albedo[pixel].rgb * occlusion; 
 float3 color = ambient + Lo;
     
     color = color / (color + float3(1.f, 1.f, 1.f));

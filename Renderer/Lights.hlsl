@@ -77,3 +77,30 @@ float3 PointLight(float3 pWorldPos, float3 N, float3 V, float3 pLightPos, float3
     
     return (kD * pAlbedo / PI + specular) * radiance * NdotL;
 }
+
+float3 DirectionalLight(float3 N, float3 V, float3 pLightDir, float3 pLightColor, float3 pAlbedo, float pMetallic, float pRoughness)
+{
+    float3 L = normalize(-pLightDir); //direction from light to surface
+    float3 H = normalize(V + L); //halfway vec between view and light dir.
+        
+    float3 radiance = pLightColor; //directional light so no fade away
+    
+    float3 F0 = float3(.04f, .04f, .04f); //mats specular reflectance
+    F0 = lerp(F0, pAlbedo, pMetallic); //lerp between non-metals reflectivity and metallic reflectivity
+    
+    float3 F = FresnelSchlick(max(dot(H, V), 0.f), F0); //controls light reflection
+    float NDF = DistributionGGX(N, H, pRoughness); //surface facets along H
+    float G = GeometrySmith(N, V, L, pRoughness); //facets masking another from light/viewer
+    
+    float3 nominator = NDF * G * F; //numerator of the Cook-Torrance specular BRDF
+    float denominator = 4.f * max(dot(N, V), 0.f) * max(dot(N, L), 0.f) + .001f; //denominator of the Cook-Torrance specular BRDF
+    float3 specular = nominator / denominator; //mats specular 
+    
+    float3 kS = F; //percent of incoming light reflected as specular
+    float3 kD = float3(1.f, 1.f, 1.f) - kS; //light remaining for diffuse reflection
+    kD *= 1.f - pMetallic; //metals dont have a traditional diffuse
+    
+    float NdotL = max(dot(N, L), 0.f);
+    
+    return (kD * pAlbedo / PI + specular) * radiance * NdotL;
+}
