@@ -382,6 +382,21 @@
                     "name": "Output",
                     "access": "UAV",
                     "type": "Texture"
+                },
+                {
+                    "name": "ShadowMap",
+                    "access": "SRV",
+                    "type": "Texture",
+                    "texture": {
+                        "dimension": "TextureCube"
+                    }
+                }
+            ],
+            "samplers": [
+                {
+                    "name": "ShadowSampler",
+                    "filter": "MinMagMipPoint",
+                    "addressMode": "Clamp"
                 }
             ]
         },
@@ -420,21 +435,25 @@
                             "name": "PointLight"
                         }
                     }
-                },
-                {
-                    "name": "ShadowCubeMap",
-                    "access": "UAV",
-                    "type": "Texture",
-                    "texture": {
-                        "dimension": "TextureCube"
-                    }
                 }
             ]
         },
         {
             "name": "ShadowVertex",
             "fileName": "ShadowVertex.hlsl",
-            "type": "Vertex"
+            "type": "Vertex",
+            "resources": [
+                {
+                    "name": "PLights",
+                    "access": "SRV",
+                    "type": "Buffer",
+                    "buffer": {
+                        "typeStruct": {
+                            "name": "PointLight"
+                        }
+                    }
+                }
+            ]
         }
     ],
     "structs": [
@@ -855,8 +874,8 @@
             "resourceTexture": {
                 "name": "Lighting",
                 "editorPos": [
-                    331.0,
-                    226.0
+                    827.0,
+                    322.0
                 ],
                 "format": {
                     "format": "RGBA8_Unorm"
@@ -874,10 +893,11 @@
             "actionComputeShader": {
                 "name": "LightingPass",
                 "editorPos": [
-                    773.0,
-                    41.0
+                    1015.0,
+                    169.0
                 ],
                 "linkProperties": [
+                    {},
                     {},
                     {},
                     {},
@@ -891,8 +911,8 @@
                 "connections": [
                     {
                         "srcPin": "Lights",
-                        "dstNode": "ShadowPass",
-                        "dstPin": "PointLights"
+                        "dstNode": "Lights",
+                        "dstPin": "resource"
                     },
                     {
                         "srcPin": "PLights",
@@ -933,6 +953,11 @@
                         "srcPin": "Output",
                         "dstNode": "Lighting",
                         "dstPin": "resource"
+                    },
+                    {
+                        "srcPin": "ShadowMap",
+                        "dstNode": "ShadowSubGraph",
+                        "dstPin": "ShadowMap"
                     }
                 ],
                 "shader": {
@@ -964,39 +989,13 @@
             }
         },
         {
-            "resourceTexture": {
-                "name": "Point Light Shadow Map",
+            "actionSubGraph": {
+                "name": "ShadowSubGraph",
                 "editorPos": [
-                    266.0,
-                    274.0
-                ],
-                "format": {
-                    "format": "RGBA8_Unorm"
-                },
-                "size": {
-                    "multiply": [
-                        2048,
-                        2048,
-                        1
-                    ]
-                },
-                "dimension": "TextureCube"
-            }
-        },
-        {
-            "actionDrawCall": {
-                "name": "ShadowPass",
-                "editorPos": [
-                    463.0,
-                    16.0
+                    431.0,
+                    335.0
                 ],
                 "linkProperties": [
-                    {},
-                    {},
-                    {},
-                    {},
-                    {},
-                    {},
                     {},
                     {},
                     {}
@@ -1008,31 +1007,279 @@
                         "dstPin": "resource"
                     },
                     {
-                        "srcPin": "ShadowCubeMap",
-                        "dstNode": "Point Light Shadow Map",
-                        "dstPin": "resource"
+                        "srcPin": "Scene",
+                        "dstNode": "Node",
+                        "dstPin": "source"
+                    },
+                    {
+                        "srcPin": "ShadowMap"
                     }
                 ],
-                "vertexShader": {
-                    "name": "ShadowVertex"
+                "fileName": "ShadowSubGraph.gg",
+                "subGraphData": {
+                    "importedResources": [
+                        "PointLights",
+                        "Scene"
+                    ],
+                    "exportedResources": [
+                        "ShadowMap"
+                    ],
+                    "variables": [
+                        {
+                            "name": "MouseState",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "MouseStateLastFrame",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "iResolution",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "iTime",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "iTimeDelta",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "iFrameRate",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "iFrame",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "iMouse",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "ViewMtx",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "InvViewMtx",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "ProjMtx",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "InvProjMtx",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "JitteredProjMtx",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "InvJitteredProjMtx",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "ViewProjMtx",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "InvViewProjMtx",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "JitteredViewProjMtx",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "InvJitteredViewProjMtx",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "CameraPos",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "CameraUp",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "CameraLeft",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "CameraForward",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "CameraFOV",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "CameraAltitudeAzimuth",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "CameraChanged",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "CameraJitter",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "CameraJitterRaw",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "CameraNearPlane",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "CameraFarPlane",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "ShadingRateImageTileSize",
+                            "visibility": "Host"
+                        },
+                        {
+                            "name": "WindowSize",
+                            "visibility": "Host"
+                        }
+                    ]
                 },
-                "pixelShader": {
-                    "name": "ShadowFragment"
-                },
-                "depthTest": "Greater",
-                "colorTargets": [
+                "variableSettings": [
                     {
-                        "node": "Point Light Shadow Map",
-                        "pin": "resource"
+                        "name": "MouseState",
+                        "visibility": "Host"
                     },
-                    {},
-                    {},
-                    {},
-                    {},
-                    {},
-                    {},
-                    {}
-                ]
+                    {
+                        "name": "MouseStateLastFrame",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "iResolution",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "iTime",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "iTimeDelta",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "iFrameRate",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "iFrame",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "iMouse",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "ViewMtx",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "InvViewMtx",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "ProjMtx",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "InvProjMtx",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "JitteredProjMtx",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "InvJitteredProjMtx",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "ViewProjMtx",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "InvViewProjMtx",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "JitteredViewProjMtx",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "InvJitteredViewProjMtx",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "CameraPos",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "CameraUp",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "CameraLeft",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "CameraForward",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "CameraFOV",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "CameraAltitudeAzimuth",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "CameraChanged",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "CameraJitter",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "CameraJitterRaw",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "CameraNearPlane",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "CameraFarPlane",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "ShadingRateImageTileSize",
+                        "visibility": "Host"
+                    },
+                    {
+                        "name": "WindowSize",
+                        "visibility": "Host"
+                    }
+                ],
+                "loopCountVariable": {
+                    "name": "Loop Count Variable_0"
+                }
             }
         }
     ],
@@ -1044,8 +1291,8 @@
                 -192.0
             ],
             "size": [
-                460.0,
-                329.0
+                476.0,
+                364.0
             ]
         }
     ]

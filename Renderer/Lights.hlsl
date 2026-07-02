@@ -104,3 +104,16 @@ float3 DirectionalLight(float3 N, float3 V, float3 pLightDir, float3 pLightColor
     
     return (kD * pAlbedo / PI + specular) * radiance * NdotL;
 }
+
+/* Shadows */
+float PointLightShadow(float pShadowFarPlane, float3 pWorldPos, float3 pLightPos, TextureCube<float4> pShadowMap)
+{
+    float3 fragToLight = pWorldPos - pLightPos;
+    float closestDepth = pShadowMap.SampleLevel( /*$(Sampler:point:point:point:clamp)*/, fragToLight, 0).r * pShadowFarPlane;
+    float currentDepth = length(fragToLight);
+    float bias = .05f;
+    
+    float shadow = currentDepth - bias > closestDepth ? 1.f : 0.f;
+    
+    return shadow;
+}

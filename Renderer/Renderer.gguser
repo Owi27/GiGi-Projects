@@ -4,16 +4,16 @@
         "iResolution_textureName": "Lighting"
     },
     "snapshot": {
-        "resourceViewNodeIndex": 2,
-        "resourceViewResourceIndex": 81,
+        "resourceViewNodeIndex": 13,
+        "resourceViewResourceIndex": 11,
         "cameraPos": [
-            4.199583053588867,
-            6.32297420501709,
-            0.5272218585014343
+            1.7286372184753419,
+            3.8696868419647219,
+            0.3766281008720398
         ],
         "cameraAltitudeAzimuth": [
-            -0.6399991512298584,
-            1.7318204641342164
+            -0.8893810510635376,
+            1.999551773071289
         ],
         "importedResources": [
             {

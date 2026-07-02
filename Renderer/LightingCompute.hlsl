@@ -35,12 +35,19 @@ float3 V = normalize( /*$(Variable:CameraPos)*/- position);
 //direct lighting    
 float3 lightPos = float3(lerp(-7.f, 7.f, abs(sin( /*$(Variable:iTime)*/ * .25f))), 0.f, 0.f);
 float3 Lo = float3(0.f, 0.f, 0.f);
+
+//one point light for now:
+//Lo += PointLight(position, N, V, PLights[2].Pos, PLights[2].Col, PLights[2].Range, Albedo[pixel].rgb, metallic, roughness)  * PointLightShadow(PLights[2].Range, position, PLights[2].Pos, ShadowMap);
 for (int i = 0;i < 5; i++)
     {        
         if (i < 4)
         {
-            Lo += PointLight(position, N, V, PLights[i].Pos, PLights[i].Col, PLights[i].Range, Albedo[pixel].rgb, metallic, roughness);
+            if (i == 0)
+                Lo += (1.f - PointLightShadow(PLights[i].Range, position, PLights[i].Pos, ShadowMap)) * PointLight(position, N, V, PLights[i].Pos, PLights[i].Col, PLights[i].Range, Albedo[pixel].rgb, metallic, roughness);
+            else   
+                Lo += PointLight(position, N, V, PLights[i].Pos, PLights[i].Col, PLights[i].Range, Albedo[pixel].rgb, metallic, roughness);
         }
+           
         if (i > 3)
         {
             Lo += PointLight(position, N, V, lightPos, /*$(Variable:LightCol)*/, 0, Albedo[pixel].rgb, metallic, roughness);
@@ -48,7 +55,7 @@ for (int i = 0;i < 5; i++)
     }
 
 //Directional Light
-Lo += DirectionalLight(N, V, float3(-.2f, -1.f, -.3f), float3(0.f, 0.f, 1.f), Albedo[pixel].rgb, metallic, roughness);
+//Lo += DirectionalLight(N, V, float3(-.2f, -1.f, -.3f), float3(1.f, 1.f, 1.f), Albedo[pixel].rgb, metallic, roughness);
     
 float3 ambient = float3(.0f, .0f, .0f) * Albedo[pixel].rgb * occlusion; 
 float3 color = ambient + Lo;

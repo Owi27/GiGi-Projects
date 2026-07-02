@@ -1,0 +1,900 @@
+{
+    "$schema": "gigischema.json",
+    "name": "ShadowSubGraph",
+    "version": "1.01",
+    "variables": [
+        {
+            "name": "MouseState",
+            "type": "Float4",
+            "dflt": "0.0f, 0.0f, 0.0f, 0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "MouseStateLastFrame",
+            "type": "Float4",
+            "dflt": "0.0f, 0.0f, 0.0f, 0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "iResolution",
+            "type": "Float3",
+            "dflt": "0.0f, 0.0f, 0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "iTime",
+            "type": "Float",
+            "dflt": "0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "iTimeDelta",
+            "type": "Float",
+            "dflt": "0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "iFrameRate",
+            "type": "Float",
+            "dflt": "0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "iFrame",
+            "type": "Int",
+            "dflt": "0",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "iMouse",
+            "type": "Float4",
+            "dflt": "0.0f, 0.0f, 0.0f, 0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "ViewMtx",
+            "type": "Float4x4",
+            "dflt": "1.0f, 0.0f, 0.0f, 0.0f,   0.0f, 1.0f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f, 0.0f,   0.0f, 0.0f, 0.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "InvViewMtx",
+            "type": "Float4x4",
+            "dflt": "1.0f, 0.0f, 0.0f, 0.0f,   0.0f, 1.0f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f, 0.0f,   0.0f, 0.0f, 0.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "ProjMtx",
+            "type": "Float4x4",
+            "dflt": "1.0f, 0.0f, 0.0f, 0.0f,   0.0f, 1.0f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f, 0.0f,   0.0f, 0.0f, 0.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "InvProjMtx",
+            "type": "Float4x4",
+            "dflt": "1.0f, 0.0f, 0.0f, 0.0f,   0.0f, 1.0f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f, 0.0f,   0.0f, 0.0f, 0.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "JitteredProjMtx",
+            "type": "Float4x4",
+            "dflt": "1.0f, 0.0f, 0.0f, 0.0f,   0.0f, 1.0f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f, 0.0f,   0.0f, 0.0f, 0.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "InvJitteredProjMtx",
+            "type": "Float4x4",
+            "dflt": "1.0f, 0.0f, 0.0f, 0.0f,   0.0f, 1.0f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f, 0.0f,   0.0f, 0.0f, 0.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "ViewProjMtx",
+            "type": "Float4x4",
+            "dflt": "1.0f, 0.0f, 0.0f, 0.0f,   0.0f, 1.0f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f, 0.0f,   0.0f, 0.0f, 0.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "InvViewProjMtx",
+            "type": "Float4x4",
+            "dflt": "1.0f, 0.0f, 0.0f, 0.0f,   0.0f, 1.0f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f, 0.0f,   0.0f, 0.0f, 0.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "JitteredViewProjMtx",
+            "type": "Float4x4",
+            "dflt": "1.0f, 0.0f, 0.0f, 0.0f,   0.0f, 1.0f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f, 0.0f,   0.0f, 0.0f, 0.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "InvJitteredViewProjMtx",
+            "type": "Float4x4",
+            "dflt": "1.0f, 0.0f, 0.0f, 0.0f,   0.0f, 1.0f, 0.0f, 0.0f,   0.0f, 0.0f, 1.0f, 0.0f,   0.0f, 0.0f, 0.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "CameraPos",
+            "type": "Float3",
+            "dflt": "0.0f, 0.0f, 0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "CameraUp",
+            "type": "Float3",
+            "dflt": "0.0f, 1.0f, 0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "CameraLeft",
+            "type": "Float3",
+            "dflt": "-1.0f, 0.0f, 0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "CameraForward",
+            "type": "Float3",
+            "dflt": "0.0f, 0.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "CameraFOV",
+            "type": "Float",
+            "dflt": "0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "CameraAltitudeAzimuth",
+            "type": "Float2",
+            "dflt": "0.0f, 0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "CameraChanged",
+            "type": "Bool",
+            "dflt": "false",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "CameraJitter",
+            "type": "Float2",
+            "dflt": "0.5f, 0.5f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "CameraJitterRaw",
+            "type": "Float2",
+            "dflt": "0.5f, 0.5f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "CameraNearPlane",
+            "type": "Float",
+            "dflt": "0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "CameraFarPlane",
+            "type": "Float",
+            "dflt": "0.0f",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "ShadingRateImageTileSize",
+            "type": "Uint",
+            "dflt": "16",
+            "visibility": "Host",
+            "transient": true
+        },
+        {
+            "name": "WindowSize",
+            "type": "Float2",
+            "dflt": "1.0f, 1.0f",
+            "visibility": "Host",
+            "transient": true
+        }
+    ],
+    "shaders": [
+        {
+            "name": "ShadowFragment",
+            "fileName": "ShadowFragment.hlsl",
+            "type": "Pixel",
+            "resources": [
+                {
+                    "name": "PointLights",
+                    "access": "SRV",
+                    "type": "Buffer",
+                    "buffer": {
+                        "typeStruct": {
+                            "name": "PointLight"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "ShadowVertex",
+            "fileName": "ShadowVertex.hlsl",
+            "type": "Vertex",
+            "resources": [
+                {
+                    "name": "PLights",
+                    "access": "SRV",
+                    "type": "Buffer",
+                    "buffer": {
+                        "typeStruct": {
+                            "name": "PointLight"
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "structs": [
+        {
+            "name": "Vertex",
+            "fields": [
+                {
+                    "name": "Position",
+                    "type": "Float3",
+                    "semantic": "Position"
+                },
+                {
+                    "name": "Color",
+                    "type": "Float4",
+                    "semantic": "Color"
+                },
+                {
+                    "name": "Normal",
+                    "type": "Float3",
+                    "semantic": "Normal"
+                },
+                {
+                    "name": "Tangent",
+                    "type": "Float4",
+                    "semantic": "Tangent"
+                },
+                {
+                    "name": "UV0",
+                    "type": "Float4",
+                    "semantic": "UV"
+                },
+                {
+                    "name": "UV1",
+                    "type": "Float4",
+                    "semantic": "UV",
+                    "semanticIndex": 1
+                },
+                {
+                    "name": "UV2",
+                    "type": "Float4",
+                    "semantic": "UV",
+                    "semanticIndex": 2
+                },
+                {
+                    "name": "UV3",
+                    "type": "Float4",
+                    "semantic": "UV",
+                    "semanticIndex": 3
+                },
+                {
+                    "name": "MaterialID",
+                    "type": "Int",
+                    "semantic": "MaterialID"
+                },
+                {
+                    "name": "ShapeID",
+                    "type": "Int",
+                    "semantic": "ShapeID"
+                }
+            ]
+        },
+        {
+            "name": "PointLight",
+            "fields": [
+                {
+                    "name": "Pos",
+                    "type": "Float3"
+                },
+                {
+                    "name": "Col",
+                    "type": "Float3"
+                },
+                {
+                    "name": "Range",
+                    "type": "Float"
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "resourceBuffer": {
+                "name": "PointLights",
+                "editorPos": [
+                    -277.0,
+                    530.0
+                ],
+                "visibility": "Imported",
+                "format": {
+                    "structureType": {
+                        "name": "PointLight"
+                    }
+                },
+                "count": {
+                    "multiply": 3
+                }
+            }
+        },
+        {
+            "resourceTexture": {
+                "name": "Point Light Shadow Map",
+                "editorPos": [
+                    -326.0,
+                    674.0
+                ],
+                "visibility": "Exported",
+                "format": {
+                    "format": "D32_Float"
+                },
+                "size": {
+                    "multiply": [
+                        1920,
+                        1080,
+                        1
+                    ]
+                },
+                "dimension": "TextureCube"
+            }
+        },
+        {
+            "actionDrawCall": {
+                "name": "ShadowPassRIGHT",
+                "editorPos": [
+                    -78.0,
+                    514.0
+                ],
+                "linkProperties": [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "connections": [
+                    {
+                        "srcPin": "PLights",
+                        "dstNode": "PointLights",
+                        "dstPin": "resource"
+                    },
+                    {
+                        "srcPin": "PointLights",
+                        "dstNode": "PointLights",
+                        "dstPin": "resource"
+                    }
+                ],
+                "vertexShader": {
+                    "name": "ShadowVertex"
+                },
+                "pixelShader": {
+                    "name": "ShadowFragment"
+                },
+                "depthTargetClear": true,
+                "depthTargetClearValue": 1.0,
+                "colorTargetSettings": [
+                    {
+                        "clear": true
+                    },
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "defines": [
+                    {
+                        "name": "FACE",
+                        "value": "0"
+                    }
+                ],
+                "vertexBuffer": {
+                    "node": "Scene",
+                    "pin": "resource"
+                },
+                "colorTargets": [
+                    {
+                        "node": "ShadowMap",
+                        "pin": "resource"
+                    },
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "depthTarget": {
+                    "node": "Point Light Shadow Map",
+                    "pin": "resource"
+                }
+            }
+        },
+        {
+            "actionDrawCall": {
+                "name": "ShadowPassLEFT",
+                "editorPos": [
+                    98.0,
+                    515.0
+                ],
+                "linkProperties": [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "connections": [
+                    {
+                        "srcPin": "PLights",
+                        "dstNode": "ShadowPassRIGHT",
+                        "dstPin": "PLights"
+                    },
+                    {
+                        "srcPin": "PointLights",
+                        "dstNode": "ShadowPassRIGHT",
+                        "dstPin": "PointLights"
+                    }
+                ],
+                "vertexShader": {
+                    "name": "ShadowVertex"
+                },
+                "pixelShader": {
+                    "name": "ShadowFragment"
+                },
+                "depthTargetClear": true,
+                "depthTargetClearValue": 1.0,
+                "depthArrayIndex": 1,
+                "colorTargetSettings": [
+                    {
+                        "clear": true,
+                        "arrayIndex": 1
+                    },
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "defines": [
+                    {
+                        "name": "FACE",
+                        "value": "1"
+                    }
+                ],
+                "vertexBuffer": {
+                    "node": "ShadowPassRIGHT",
+                    "pin": "vertexBuffer"
+                },
+                "colorTargets": [
+                    {
+                        "node": "ShadowPassRIGHT",
+                        "pin": "colorTarget0"
+                    },
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "depthTarget": {
+                    "node": "ShadowPassRIGHT",
+                    "pin": "depthTarget"
+                }
+            }
+        },
+        {
+            "actionDrawCall": {
+                "name": "ShadowPassTOP",
+                "editorPos": [
+                    274.0,
+                    515.0
+                ],
+                "linkProperties": [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "connections": [
+                    {
+                        "srcPin": "PLights",
+                        "dstNode": "ShadowPassLEFT",
+                        "dstPin": "PLights"
+                    },
+                    {
+                        "srcPin": "PointLights",
+                        "dstNode": "ShadowPassLEFT",
+                        "dstPin": "PointLights"
+                    }
+                ],
+                "vertexShader": {
+                    "name": "ShadowVertex"
+                },
+                "pixelShader": {
+                    "name": "ShadowFragment"
+                },
+                "depthTargetClear": true,
+                "depthTargetClearValue": 1.0,
+                "depthArrayIndex": 2,
+                "colorTargetSettings": [
+                    {
+                        "clear": true,
+                        "arrayIndex": 2
+                    },
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "defines": [
+                    {
+                        "name": "FACE",
+                        "value": "2"
+                    }
+                ],
+                "vertexBuffer": {
+                    "node": "ShadowPassLEFT",
+                    "pin": "vertexBuffer"
+                },
+                "colorTargets": [
+                    {
+                        "node": "ShadowPassLEFT",
+                        "pin": "colorTarget0"
+                    },
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "depthTarget": {
+                    "node": "ShadowPassLEFT",
+                    "pin": "depthTarget"
+                }
+            }
+        },
+        {
+            "actionDrawCall": {
+                "name": "ShadowPassBOTTOM",
+                "editorPos": [
+                    450.0,
+                    515.0
+                ],
+                "linkProperties": [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "connections": [
+                    {
+                        "srcPin": "PLights",
+                        "dstNode": "ShadowPassTOP",
+                        "dstPin": "PLights"
+                    },
+                    {
+                        "srcPin": "PointLights",
+                        "dstNode": "ShadowPassTOP",
+                        "dstPin": "PointLights"
+                    }
+                ],
+                "vertexShader": {
+                    "name": "ShadowVertex"
+                },
+                "pixelShader": {
+                    "name": "ShadowFragment"
+                },
+                "depthTargetClear": true,
+                "depthTargetClearValue": 1.0,
+                "depthArrayIndex": 3,
+                "colorTargetSettings": [
+                    {
+                        "clear": true,
+                        "arrayIndex": 3
+                    },
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "defines": [
+                    {
+                        "name": "FACE",
+                        "value": "3"
+                    }
+                ],
+                "vertexBuffer": {
+                    "node": "ShadowPassTOP",
+                    "pin": "vertexBuffer"
+                },
+                "colorTargets": [
+                    {
+                        "node": "ShadowPassTOP",
+                        "pin": "colorTarget0"
+                    },
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "depthTarget": {
+                    "node": "ShadowPassTOP",
+                    "pin": "depthTarget"
+                }
+            }
+        },
+        {
+            "actionDrawCall": {
+                "name": "ShadowPassFRONT",
+                "editorPos": [
+                    626.0,
+                    515.0
+                ],
+                "linkProperties": [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "connections": [
+                    {
+                        "srcPin": "PLights",
+                        "dstNode": "ShadowPassBOTTOM",
+                        "dstPin": "PLights"
+                    },
+                    {
+                        "srcPin": "PointLights",
+                        "dstNode": "ShadowPassBOTTOM",
+                        "dstPin": "PointLights"
+                    }
+                ],
+                "vertexShader": {
+                    "name": "ShadowVertex"
+                },
+                "pixelShader": {
+                    "name": "ShadowFragment"
+                },
+                "depthTargetClear": true,
+                "depthTargetClearValue": 1.0,
+                "depthArrayIndex": 4,
+                "stencilClear": true,
+                "colorTargetSettings": [
+                    {
+                        "clear": true,
+                        "arrayIndex": 4
+                    },
+                    {
+                        "arrayIndex": 4
+                    },
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "defines": [
+                    {
+                        "name": "FACE",
+                        "value": "4"
+                    }
+                ],
+                "vertexBuffer": {
+                    "node": "ShadowPassBOTTOM",
+                    "pin": "vertexBuffer"
+                },
+                "colorTargets": [
+                    {
+                        "node": "ShadowPassBOTTOM",
+                        "pin": "colorTarget0"
+                    },
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "depthTarget": {
+                    "node": "ShadowPassBOTTOM",
+                    "pin": "depthTarget"
+                }
+            }
+        },
+        {
+            "actionDrawCall": {
+                "name": "ShadowPassBACK",
+                "editorPos": [
+                    802.0,
+                    514.0
+                ],
+                "linkProperties": [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "connections": [
+                    {
+                        "srcPin": "PLights",
+                        "dstNode": "ShadowPassFRONT",
+                        "dstPin": "PLights"
+                    },
+                    {
+                        "srcPin": "PointLights",
+                        "dstNode": "ShadowPassFRONT",
+                        "dstPin": "PointLights"
+                    }
+                ],
+                "vertexShader": {
+                    "name": "ShadowVertex"
+                },
+                "pixelShader": {
+                    "name": "ShadowFragment"
+                },
+                "depthTargetClear": true,
+                "depthTargetClearValue": 1.0,
+                "depthArrayIndex": 5,
+                "colorTargetSettings": [
+                    {
+                        "clear": true,
+                        "arrayIndex": 5
+                    },
+                    {
+                        "arrayIndex": 4
+                    },
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "defines": [
+                    {
+                        "name": "FACE",
+                        "value": "5"
+                    }
+                ],
+                "vertexBuffer": {
+                    "node": "ShadowPassFRONT",
+                    "pin": "vertexBuffer"
+                },
+                "colorTargets": [
+                    {
+                        "node": "ShadowPassFRONT",
+                        "pin": "colorTarget0"
+                    },
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                ],
+                "depthTarget": {
+                    "node": "ShadowPassFRONT",
+                    "pin": "depthTarget"
+                }
+            }
+        },
+        {
+            "resourceTexture": {
+                "name": "ShadowMap",
+                "editorPos": [
+                    -245.0,
+                    722.0
+                ],
+                "format": {
+                    "format": "RGBA8_Unorm"
+                },
+                "size": {
+                    "multiply": [
+                        1920,
+                        1080,
+                        1
+                    ]
+                },
+                "dimension": "TextureCube"
+            }
+        },
+        {
+            "resourceBuffer": {
+                "name": "Scene",
+                "editorPos": [
+                    -261.0,
+                    594.0
+                ],
+                "visibility": "Imported"
+            }
+        }
+    ],
+    "PrimaryOutput": {
+        "name": "Point Light Shadow Map"
+    }
+}
