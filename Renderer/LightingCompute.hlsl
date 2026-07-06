@@ -64,6 +64,7 @@ float3 color = ambient + Lo;
     color = pow(color, float3(1.f / 2.2f, 1.f / 2.2f, 1.f / 2.2f));
 
     Output[pixel] = float4(color, 1.f);
+    //Output[pixel] = float4(position - PLights[0].Pos, 1.f);
 }
 
 /*

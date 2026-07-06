@@ -232,6 +232,12 @@
         {
             "name": "posDebug",
             "type": "Float3"
+        },
+        {
+            "name": "ShadowPointLightIdx",
+            "type": "Int",
+            "Const": true,
+            "visibility": "User"
         }
     ],
     "shaders": [
@@ -1278,7 +1284,7 @@
                     }
                 ],
                 "loopCountVariable": {
-                    "name": "Loop Count Variable_0"
+                    "name": "ShadowPointLightIdx"
                 }
             }
         }
@@ -1291,8 +1297,8 @@
                 -192.0
             ],
             "size": [
-                476.0,
-                364.0
+                492.0,
+                399.0
             ]
         }
     ]

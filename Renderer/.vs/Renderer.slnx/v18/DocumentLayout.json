@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "D:\\GitHub\\GiGi-Projects\\Renderer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GitHub\\GiGi-Projects\\Renderer\\LightingCompute.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:LightingCompute.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GitHub\\GiGi-Projects\\Renderer\\ShadowVertex.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShadowVertex.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GitHub\\GiGi-Projects\\Renderer\\Lights.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -15,19 +15,19 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShadowFragment.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GitHub\\GiGi-Projects\\Renderer\\ShadowVertex.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShadowVertex.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GitHub\\GiGi-Projects\\Renderer\\LightingCompute.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:LightingCompute.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GitHub\\GiGi-Projects\\Renderer\\PointLights.csv||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PointLights.csv||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GitHub\\GiGi-Projects\\Renderer\\CamMath.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:CamMath.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Owi\\AppData\\Local\\GigiBrowser\\Techniques\\0D79EAD8E654A827\\Users\\awolfe\\DeferredRendererPBR\\RTPointLight.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Owi\\AppData\\Local\\GigiBrowser\\Techniques\\0D79EAD8E654A827\\Users\\awolfe\\DeferredRendererPBR\\RTPointLight.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GitHub\\GiGi-Projects\\Renderer\\CamMath.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:CamMath.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\GitHub\\GiGi-Projects\\Renderer\\Material.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -116,22 +116,9 @@
               "RelativeDocumentMoniker": "Lights.hlsl",
               "ToolTip": "D:\\GitHub\\GiGi-Projects\\Renderer\\Lights.hlsl",
               "RelativeToolTip": "Lights.hlsl",
-              "ViewState": "AgIAAGYAAAAAAAAAAAAswHIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAswHYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
               "WhenOpened": "2026-06-26T00:15:36.37Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ShadowVertex.hlsl",
-              "DocumentMoniker": "D:\\GitHub\\GiGi-Projects\\Renderer\\ShadowVertex.hlsl",
-              "RelativeDocumentMoniker": "ShadowVertex.hlsl",
-              "ToolTip": "D:\\GitHub\\GiGi-Projects\\Renderer\\ShadowVertex.hlsl",
-              "RelativeToolTip": "ShadowVertex.hlsl",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAACQAAABbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
-              "WhenOpened": "2026-07-02T15:18:28.807Z",
               "EditorCaption": ""
             },
             {
@@ -142,22 +129,35 @@
               "RelativeDocumentMoniker": "ShadowFragment.hlsl",
               "ToolTip": "D:\\GitHub\\GiGi-Projects\\Renderer\\ShadowFragment.hlsl",
               "RelativeToolTip": "ShadowFragment.hlsl",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABQAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
               "WhenOpened": "2026-07-02T15:18:45.281Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "LightingCompute.hlsl",
               "DocumentMoniker": "D:\\GitHub\\GiGi-Projects\\Renderer\\LightingCompute.hlsl",
               "RelativeDocumentMoniker": "LightingCompute.hlsl",
               "ToolTip": "D:\\GitHub\\GiGi-Projects\\Renderer\\LightingCompute.hlsl",
               "RelativeToolTip": "LightingCompute.hlsl",
-              "ViewState": "AgIAABsAAAAAAAAAAAAswCgAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAACUAAAAAAAAAAAAswDgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
               "WhenOpened": "2026-06-07T22:42:38.556Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ShadowVertex.hlsl",
+              "DocumentMoniker": "D:\\GitHub\\GiGi-Projects\\Renderer\\ShadowVertex.hlsl",
+              "RelativeDocumentMoniker": "ShadowVertex.hlsl",
+              "ToolTip": "D:\\GitHub\\GiGi-Projects\\Renderer\\ShadowVertex.hlsl",
+              "RelativeToolTip": "ShadowVertex.hlsl",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACAAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
+              "WhenOpened": "2026-07-02T15:18:28.807Z",
               "EditorCaption": ""
             },
             {
@@ -168,14 +168,14 @@
               "RelativeDocumentMoniker": "PointLights.csv",
               "ToolTip": "D:\\GitHub\\GiGi-Projects\\Renderer\\PointLights.csv",
               "RelativeToolTip": "PointLights.csv",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002120|",
               "WhenOpened": "2026-07-02T17:05:56.686Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "CamMath.hlsl",
               "DocumentMoniker": "D:\\GitHub\\GiGi-Projects\\Renderer\\CamMath.hlsl",
               "RelativeDocumentMoniker": "CamMath.hlsl",
@@ -183,8 +183,7 @@
               "RelativeToolTip": "CamMath.hlsl",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
-              "WhenOpened": "2026-06-29T18:41:08.099Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-29T18:41:08.099Z"
             },
             {
               "$type": "Document",
@@ -196,8 +195,7 @@
               "RelativeToolTip": "Material.hlsl",
               "ViewState": "AgIAAOwBAAAAAAAAAAAAAPwBAADCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
-              "WhenOpened": "2026-05-27T20:19:42.604Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-27T20:19:42.604Z"
             },
             {
               "$type": "Document",
@@ -209,8 +207,7 @@
               "RelativeToolTip": "ShadowSubGraph.gg",
               "ViewState": "AgIAAD4BAAAAAAAAAAAUwFEBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-07-02T15:29:18.55Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-02T15:29:18.55Z"
             },
             {
               "$type": "Document",
@@ -222,8 +219,7 @@
               "RelativeToolTip": "PointLightShadow.hlsl",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
-              "WhenOpened": "2026-06-29T18:56:38.047Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-29T18:56:38.047Z"
             },
             {
               "$type": "Document",
@@ -235,8 +231,7 @@
               "RelativeToolTip": "Renderer.gg",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2026-05-27T20:31:50.185Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-27T20:31:50.185Z"
             },
             {
               "$type": "Document",
@@ -326,11 +321,11 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "RTPointLight.hlsl",
               "DocumentMoniker": "C:\\Users\\Owi\\AppData\\Local\\GigiBrowser\\Techniques\\0D79EAD8E654A827\\Users\\awolfe\\DeferredRendererPBR\\RTPointLight.hlsl",
               "ToolTip": "C:\\Users\\Owi\\AppData\\Local\\GigiBrowser\\Techniques\\0D79EAD8E654A827\\Users\\awolfe\\DeferredRendererPBR\\RTPointLight.hlsl",
-              "ViewState": "AgIAADAAAAAAAAAAAAAAAEcAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAE0AAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
               "WhenOpened": "2026-06-08T16:55:17.644Z",
               "EditorCaption": ""
